@@ -251,7 +251,11 @@
 <footer>Seed Saving Quality Network Tracker — hackathon build</footer>
 
 <script>
-let API_BASE = localStorage.getItem('seedledger_api') || 'http://localhost:8000';
+let API_BASE = localStorage.getItem('seedledger_api') ||
+  (window.location.hostname === '127.0.0.1' ||
+   window.location.hostname === 'localhost'
+    ? 'http://localhost:8000'
+    : window.location.origin);
 document.getElementById('apiBaseInput').value = API_BASE;
 let GROWERS = [], LOTS = [];
 
